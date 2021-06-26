@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication2.Models.Shop>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Order Table</h4>
+<h7>Order vinyl of your favorite artist</h7>
+<hr />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SingerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AlbumName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PopularSong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Homeland)
+            </th>
+            <th>  <a asp-action="AddOrEdit" class="btn btn-outline-success"><i class="far fa-plus-square">Album</i></a></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SingerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlbumName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PopularSong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Homeland)
+            </td>
+            <td>
+                <a asp-action="AddOrEdit" asp-route-id="@item.ItemId"><i class="fa fa-marker fa-lg"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.ItemId" class="text-danger ml-1"onclick="return confirm('This is the end, my only friend?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
